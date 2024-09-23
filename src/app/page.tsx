@@ -1,10 +1,8 @@
 import React from 'react'
 
-type Props = {}
-
-const HomePage = (props: Props) => {
+const HomePage = () => {
     return (
-        <div className='text-2xl'>HomePage</div>
+        <div className='text-2xl'></div>
     )
 }
 

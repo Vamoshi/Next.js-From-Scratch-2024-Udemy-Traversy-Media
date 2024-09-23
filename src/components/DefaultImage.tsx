@@ -12,9 +12,6 @@ const DefaultImage: React.FC<CustomImageProps> = ({
     loading = 'lazy',
     ...props
 }) => {
-    console.log('====================================');
-    console.log(alt);
-    console.log('====================================');
     return <Image alt={alt} width={width} height={height} loading={loading} {...props} />;
 };
 
