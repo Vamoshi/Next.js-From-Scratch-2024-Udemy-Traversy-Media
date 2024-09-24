@@ -7,12 +7,12 @@ type CustomImageProps = Omit<ImageProps, 'alt'> & {
 
 const DefaultImage: React.FC<CustomImageProps> = ({
     alt = "Default Alt Text",
-    width = 100,
-    height = 100,
-    loading = 'lazy',
+    width = 0,
+    height = 0,
+    sizes = "100vw",
     ...props
 }) => {
-    return <Image alt={alt} width={width} height={height} loading={loading} {...props} />;
+    return <Image alt={alt} width={width} height={height} sizes={sizes} {...props} />;
 };
 
 export default DefaultImage;

@@ -1,9 +1,11 @@
+import { Hero, InfoBoxes } from '@/components'
 import React from 'react'
 
 const HomePage = () => {
-    return (
-        <div className='text-2xl'></div>
-    )
+    return <>
+        <Hero />
+        <InfoBoxes />
+    </>
 }
 
 export default HomePage

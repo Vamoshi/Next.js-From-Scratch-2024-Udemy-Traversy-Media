@@ -1,11 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import DefaultImage from './DefaultImage'
-import profileDefault from "@/assets/images/profile.png"
-import logo from "@/assets/images/logo-white.png"
 import Link from 'next/link'
 import { FaGoogle } from "react-icons/fa"
 import { usePathname } from 'next/navigation'
+import { LogoWhite, ProfileDefault } from '@/assets/images'
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -66,7 +65,7 @@ const Navbar = () => {
                         <Link className="flex flex-shrink-0 items-center" href="/">
                             <DefaultImage
                                 className="h-10 w-auto"
-                                src={logo}
+                                src={LogoWhite}
                             />
 
                             <span className="hidden md:block text-white text-2xl font-bold ml-2">PropertyPulse</span>
@@ -141,7 +140,7 @@ const Navbar = () => {
                                             <span className="sr-only">Open user menu</span>
                                             <DefaultImage
                                                 className="h-8 w-8 rounded-full"
-                                                src={profileDefault}
+                                                src={ProfileDefault}
                                             />
                                         </button>
                                     </div>

@@ -1,5 +1,5 @@
 import "@/assets/styles/globals.css"
-import Navbar from "@/components/Navbar"
+import { Footer, Navbar } from "@/components"
 
 import React, { ReactNode } from 'react'
 
@@ -19,6 +19,7 @@ const MainLayout = ({ children }: Props) => {
             <body>
                 <Navbar />
                 <div>{children}</div>
+                <Footer />
             </body>
         </html>
     )
