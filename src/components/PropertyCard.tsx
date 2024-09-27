@@ -2,11 +2,40 @@ import React from 'react'
 import DefaultImage from './DefaultImage'
 import Link from 'next/link';
 import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
-import { IProperty } from '@/models/IProperty';
-import DefaultPropertyImage from "@/assets/images/default_property_image.jpg"
+
 
 type Props = {
-    property: IProperty
+    property: {
+        _id: string;
+        owner: string;
+        name: string;
+        type: string;
+        description: string;
+        location: {
+            street: string;
+            city: string;
+            state: string;
+            zipcode: string;
+        };
+        beds: number;
+        baths: number;
+        square_feet: number;
+        amenities: string[];
+        rates: {
+            nightly?: number;
+            weekly?: number;
+            monthly?: number;
+        };
+        seller_info: {
+            name: string;
+            email: string;
+            phone: string;
+        };
+        images: string[];
+        is_featured: boolean;
+        createdAt: string;
+        updatedAt: string;
+    }
 }
 
 const PropertyCard = ({ property }: Props) => {
@@ -14,24 +43,21 @@ const PropertyCard = ({ property }: Props) => {
     const getRateDisplay = () => {
         const { rates } = property
 
-        if (rates) {
-            if (rates.monthly) {
-                return `$${rates.monthly?.toLocaleString()}/mo`
-            }
-            else if (rates.weekly) {
-                return `$${rates.weekly?.toLocaleString()}/wk`
-            }
-            else if (rates.nightly) {
-                return `$${rates.nightly?.toLocaleString()}/night`
-            }
+        if (rates.monthly) {
+            return `$${rates.monthly?.toLocaleString()}/mo`
         }
-        return "N/A"
+        else if (rates.weekly) {
+            return `$${rates.weekly?.toLocaleString()}/wk`
+        }
+        else if (rates.nightly) {
+            return `$${rates.nightly?.toLocaleString()}/night`
+        }
     }
 
     return (
         <div className="rounded-xl shadow-md relative">
             <DefaultImage
-                src={property.images ? `/images/properties/${property.images[0]}` : DefaultPropertyImage}
+                src={`/images/properties/${property.images[0]}`}
                 className="w-full h-auto rounded-t-xl"
             />
             <div className="p-4">
