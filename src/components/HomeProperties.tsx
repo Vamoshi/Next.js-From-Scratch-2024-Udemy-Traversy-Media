@@ -1,10 +1,14 @@
 import React from 'react'
-import properties from "@/properties.json"
 import PropertyCard from './PropertyCard'
 import Link from 'next/link'
+import connectDB from '@/config/database'
+import Property from '@/models/Property'
+import { IProperty } from '@/models/IProperty'
 
-const HomeProperties = () => {
-    const recentProperties = properties.slice(0, 3)
+const HomeProperties = async () => {
+    await connectDB()
+
+    const recentProperties = await Property.find({}).sort({ createdAt: -1 }).limit(3).lean()
 
     return <>
         <section className='px-4 py6'>
@@ -19,7 +23,7 @@ const HomeProperties = () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {
                                 recentProperties.map((property, key) =>
-                                    <PropertyCard key={key} property={property} />
+                                    <PropertyCard key={key} property={property as IProperty} />
                                 )
                             }
                         </div>
