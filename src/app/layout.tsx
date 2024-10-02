@@ -1,5 +1,6 @@
 import "@/assets/styles/globals.css"
 import { Footer, Navbar } from "@/components"
+import SessionProviderWrapper from "@/components/SessionProviderWrapper"
 
 import React, { ReactNode } from 'react'
 
@@ -15,13 +16,15 @@ export const metadata = {
 
 const MainLayout = ({ children }: Props) => {
     return (
-        <html lang="en">
-            <body>
-                <Navbar />
-                <div>{children}</div>
-                <Footer />
-            </body>
-        </html>
+        <SessionProviderWrapper>
+            <html lang="en">
+                <body>
+                    <Navbar />
+                    <div>{children}</div>
+                    <Footer />
+                </body>
+            </html>
+        </SessionProviderWrapper>
     )
 }
 
