@@ -1,3 +1,5 @@
+import connectDB from "@/config/database";
+import User from "@/models/User";
 import { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -18,31 +20,38 @@ export const authOptions: AuthOptions = {
     }),
     // ...add more providers here
   ],
+  // These are all handled by next auth
   callbacks: {
-    // TODO: callbacks
     // Invoked on successful sign in
     async signIn({ profile }) {
       // Connect to db
+      await connectDB();
       // Check if user exists
+      const userExists = await User.findOne({ email: profile?.email });
+
       // If not, create user
+      if (!userExists) {
+        const username = profile?.name?.slice(0, 20);
+
+        await User.create({
+          email: profile?.email,
+          username,
+          image: profile?.image,
+        });
+      }
       // Return true to allow sign in
-
-      console.log("====================================");
-      console.log(profile);
-      console.log("====================================");
-
-      return false;
+      return true;
     },
     // Session callback function that modifies the session object
     async session({ session }) {
-      // Get user from db
-      // Assign user id from the session
+      if (session && session.user) {
+        // Get user from db
+        await connectDB();
+        const user = await User.findOne({ email: session.user?.email });
+        // Assign user id from the session
+        session.user.id = user._id.toString();
+      }
       // Return session
-
-      console.log("====================================");
-      console.log(session);
-      console.log("====================================");
-
       return session;
     },
   },
