@@ -5,24 +5,30 @@ import Link from 'next/link'
 import { FaGoogle } from "react-icons/fa"
 import { usePathname } from 'next/navigation'
 import { LogoWhite, ProfileDefault } from '@/assets/images'
+import { ClientSafeProvider, getProviders, useSession } from 'next-auth/react'
 
 const Navbar = () => {
+    const { data: session } = useSession()
+
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false)
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+
 
     const pathName = usePathname()
 
 
-    useEffect(() => {
-        console.log('====================================');
-        console.log(isMobileMenuOpen);
-        console.log('====================================');
-    }, [isMobileMenuOpen])
+    const [providers, setProviders] = useState<Record<string, ClientSafeProvider> | null>(null)
 
+    useEffect(() => {
+        const setAuthProviders = async () => {
+            const res = await getProviders()
+            setProviders(res)
+        }
+        setAuthProviders()
+    }, [])
 
     console.log('====================================');
-    console.log(pathName);
+    console.log(providers);
     console.log('====================================');
 
     return (
@@ -81,7 +87,7 @@ const Navbar = () => {
                     </div>
 
                     {
-                        !isLoggedIn ?
+                        !session ?
                             < div className="hidden md:block md:ml-6">
                                 {/* <!-- Right Side Menu (Logged Out) --> */}
                                 <div className="flex items-center">
@@ -202,7 +208,7 @@ const Navbar = () => {
                             Properties
                         </Link>
                         {
-                            isLoggedIn ?
+                            session ?
 
                                 <Link
                                     href="/properties/add"
