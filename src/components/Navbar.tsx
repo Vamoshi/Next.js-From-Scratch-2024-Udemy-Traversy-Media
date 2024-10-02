@@ -4,7 +4,7 @@ import DefaultImage from './DefaultImage'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LogoWhite, ProfileDefault } from '@/assets/images'
-import { ClientSafeProvider, getProviders, useSession } from 'next-auth/react'
+import { ClientSafeProvider, getProviders, signOut, useSession } from 'next-auth/react'
 import LoginButton from './LoginButton'
 
 const Navbar = () => {
@@ -170,7 +170,12 @@ const Navbar = () => {
                                                 className="block px-4 py-2 text-sm text-gray-700"
                                                 role="menuitem"
                                                 tabIndex={1}
-                                                id="user-menu-item-2">
+                                                id="user-menu-item-2"
+                                                onClick={() => {
+                                                    setIsProfileMenuOpen(false)
+                                                    signOut()
+                                                }}
+                                            >
                                                 Sign Out
                                             </button>
                                         </div>
