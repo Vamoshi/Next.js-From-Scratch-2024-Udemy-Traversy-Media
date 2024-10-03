@@ -47,24 +47,25 @@ const PropertyCard = ({ property }: Props) => {
 
                 <div className="flex justify-center gap-4 text-gray-500 mb-4">
                     <p>
-                        <FaBed className="md:hidden lg:inline" /> {property.beds} {` `}
-                        <span className="md:hidden lg:inline">Beds</span>
+                        <FaBed className="lg:inline mr-1" /> {property.beds} {` `}
+                        <span className="lg:inline mr-1">Beds</span>
                     </p>
                     <p>
-                        <FaBath className="md:hidden lg:inline" />{property.baths} {` `}
-                        <span className="md:hidden lg:inline">Baths</span>
+                        <FaBath className=" lg:inline mr-1" />{property.baths} {` `}
+                        <span className=" lg:inline mr-1">Baths</span>
                     </p>
                     <p>
-                        <FaRulerCombined className="md:hidden lg:inline" />{property.square_feet} {` `}
-                        <span className="md:hidden lg:inline">sqft</span>
+                        <FaRulerCombined className=" lg:inline mr-1" />{property.square_feet} {` `}
+                        <span className=" lg:inline mr-1">sqft</span>
                     </p>
                 </div>
 
                 <div
                     className="flex justify-center gap-4 text-green-900 text-sm mb-4"
                 >
-                    <p><FaMoneyBill className="md:hidden lg:inline" /> Weekly</p>
-                    <p><FaMoneyBill className="md:hidden lg:inline" /> Monthly</p>
+                    {property.rates.nightly && <p><FaMoneyBill className="lg:inline mr-1" /> Nightly</p>}
+                    {property.rates.weekly && <p><FaMoneyBill className="lg:inline mr-1" /> Weekly</p>}
+                    {property.rates.monthly && <p><FaMoneyBill className="lg:inline mr-1" /> monthly</p>}
                 </div>
 
                 <div className="border border-gray-100 mb-5"></div>
@@ -82,7 +83,9 @@ const PropertyCard = ({ property }: Props) => {
                     </Link>
                 </div>
             </div>
-        </div>)
+        </div>
+    )
+
 }
 
 export default PropertyCard
