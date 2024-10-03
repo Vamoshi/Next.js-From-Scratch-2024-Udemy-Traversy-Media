@@ -1,5 +1,4 @@
-import PropertyDetails from '@/components/PropertyDetails'
-import PropertyHeaderImage from '@/components/PropertyHeaderImage'
+import { PropertyDetails, PropertyHeaderImage } from '@/components'
 import connectDB from '@/config/database'
 import { IProperty } from '@/models/IProperty'
 import Property from '@/models/Property'

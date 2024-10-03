@@ -1,6 +1,6 @@
 import "@/assets/styles/globals.css"
 import { Footer, Navbar } from "@/components"
-import SessionProviderWrapper from "@/components/SessionProviderWrapper"
+import { SessionProviderWrapper } from "@/components"
 
 import React, { ReactNode } from 'react'
 

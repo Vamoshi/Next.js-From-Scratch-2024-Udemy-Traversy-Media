@@ -1,5 +1,5 @@
 import React from 'react'
-import PropertyCard from '@/components/PropertyCard'
+import { PropertyCard } from '@/components'
 import Property from '@/models/Property'
 import connectDB from '@/config/database'
 import { IProperty } from '@/models/IProperty'
