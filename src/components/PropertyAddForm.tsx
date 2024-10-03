@@ -1,9 +1,7 @@
 import addProperty from '@/app/actions/addProperty'
 import React from 'react'
 
-type Props = {}
-
-const PropertyAddForm = (props: Props) => {
+const PropertyAddForm = () => {
     return (
         <form action={addProperty}>
             <h2 className="text-3xl text-center font-semibold mb-6">
@@ -320,7 +318,7 @@ const PropertyAddForm = (props: Props) => {
                 <input
                     type="text"
                     id="seller_name"
-                    name="seller_info.name."
+                    name="seller_info.name"
                     className="border rounded w-full py-2 px-3"
                     placeholder="Name"
                 />

@@ -21,7 +21,7 @@ export interface IProperty {
     weekly?: number;
     monthly?: number;
   };
-  seller_info?: {
+  seller_info: {
     name?: string;
     email?: string;
     phone?: string;
