@@ -3,4 +3,5 @@ import IUserSession from "./IUserSession";
 import Property from "./Property";
 import User from "./User";
 
-export type { IProperty, PropertyDocument, IUserSession, Property, User };
+export type { IProperty, PropertyDocument, IUserSession };
+export { Property, User };
