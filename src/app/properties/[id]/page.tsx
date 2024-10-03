@@ -1,6 +1,6 @@
 import { PropertyDetails, PropertyHeaderImage } from '@/components'
 import connectDB from '@/config/database'
-import { IProperty } from '@/models/IProperty'
+import { PropertyDocument } from '@/models'
 import Property from '@/models/Property'
 import Link from 'next/link'
 import React from 'react'
@@ -22,7 +22,7 @@ const PropertyPage = async ({ params }: Props) => {
     // const pathName = usePathname()
 
     await connectDB()
-    const property = await Property.findById(params.id).lean() as IProperty
+    const property = await Property.findById(params.id).lean() as PropertyDocument
 
     return (
         <>

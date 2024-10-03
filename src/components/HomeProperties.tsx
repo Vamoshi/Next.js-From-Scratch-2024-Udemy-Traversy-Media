@@ -3,7 +3,7 @@ import PropertyCard from './PropertyCard'
 import Link from 'next/link'
 import connectDB from '@/config/database'
 import Property from '@/models/Property'
-import { IProperty } from '@/models/IProperty'
+import { PropertyDocument } from '@/models'
 
 const HomeProperties = async () => {
     await connectDB()
@@ -23,7 +23,7 @@ const HomeProperties = async () => {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {
                                 recentProperties.map((property, key) =>
-                                    <PropertyCard key={key} property={property as IProperty} />
+                                    <PropertyCard key={key} property={property as PropertyDocument} />
                                 )
                             }
                         </div>

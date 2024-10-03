@@ -2,7 +2,7 @@ import React from 'react'
 import { PropertyCard } from '@/components'
 import Property from '@/models/Property'
 import connectDB from '@/config/database'
-import { IProperty } from '@/models/IProperty'
+import IProperty from '@/models/IProperty'
 // [...id] to make it a catch all /id/foo/bar will route to /id
 
 // const PropertyPage = ({ params {this is the params}, searchParams {any search?} }: Props) => {
