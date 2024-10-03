@@ -1,9 +1,7 @@
 import { PropertyAddForm } from '@/components'
 import React from 'react'
 
-type Props = {}
-
-const AddPropertyPage = (props: Props) => {
+const AddPropertyPage = () => {
     return (
         <section className=' bg-blue-50'>
             <div className="container m-auto max-w-2xl py-24">
