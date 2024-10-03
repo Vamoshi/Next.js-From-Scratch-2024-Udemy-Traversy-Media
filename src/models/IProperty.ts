@@ -16,7 +16,7 @@ export interface IProperty {
   baths: number;
   square_feet: number;
   amenities?: string[];
-  rates?: {
+  rates: {
     nightly?: number;
     weekly?: number;
     monthly?: number;
@@ -26,7 +26,7 @@ export interface IProperty {
     email?: string;
     phone?: string;
   };
-  images?: string[];
+  images: string[];
   is_featured?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
