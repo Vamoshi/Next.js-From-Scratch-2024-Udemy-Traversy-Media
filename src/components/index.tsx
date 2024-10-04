@@ -11,6 +11,9 @@ import PropertyCard from "./PropertyCard"
 import PropertyDetails from "./PropertyDetails"
 import PropertyHeaderImage from "./PropertyHeaderImage"
 import SessionProviderWrapper from "./SessionProviderWrapper"
+import ProfileProperties from "./ProfileProperties"
+import PropertyImages from './PropertyImages'
+
 
 export {
     DefaultImage,
@@ -26,4 +29,7 @@ export {
     PropertyDetails,
     PropertyHeaderImage,
     SessionProviderWrapper,
+    ProfileProperties,
+    PropertyImages,
+
 }

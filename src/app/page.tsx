@@ -1,5 +1,5 @@
 import { Hero, InfoBoxes } from '@/components'
-import HomeProperties from '@/components/HomeProperties'
+import { HomeProperties } from '@/components'
 import React from 'react'
 
 const HomePage = () => {
