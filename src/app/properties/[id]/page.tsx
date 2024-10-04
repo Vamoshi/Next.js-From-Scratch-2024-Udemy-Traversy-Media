@@ -3,6 +3,7 @@ import { PropertyImages } from '@/components'
 import connectDB from '@/config/database'
 import { PropertyDocument } from '@/models'
 import Property from '@/models/Property'
+import convertToSerializable from '@/utils/convertToSerializable'
 import Link from 'next/link'
 import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
@@ -23,7 +24,13 @@ const PropertyPage = async ({ params }: Props) => {
     // const pathName = usePathname()
 
     await connectDB()
-    const property = await Property.findById(params.id).lean() as PropertyDocument
+    const property = convertToSerializable(await Property.findById(params.id).lean() as PropertyDocument)
+
+    if (!property) {
+        return <h1 className="text-center text-2xl font-bold mt-10">
+            Property Not Found
+        </h1>
+    }
 
     return (
         <>
