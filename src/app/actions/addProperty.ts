@@ -73,6 +73,7 @@ export default async function addProperty(formData: FormData) {
     beds: +getDataAsString("beds"),
     baths: +getDataAsString("baths"),
     square_feet: +getDataAsString("square_feet"),
+    description: getDataAsString("description"),
     amenities: amenities as string[],
     rates: {
       nightly: parseOptionalNumber("rates.nightly"),

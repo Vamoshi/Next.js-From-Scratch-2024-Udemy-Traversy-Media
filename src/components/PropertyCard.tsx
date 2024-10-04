@@ -31,7 +31,7 @@ const PropertyCard = ({ property }: Props) => {
     return (
         <div className="rounded-xl shadow-md relative">
             <DefaultImage
-                src={property.images ? `/images/properties/${property.images[0]}` : DefaultPropertyImage}
+                src={property.images ? property.images[0] : DefaultPropertyImage}
                 className="w-full h-auto rounded-t-xl"
             />
             <div className="p-4">
