@@ -63,9 +63,9 @@ const PropertyCard = ({ property }: Props) => {
                 <div
                     className="flex justify-center gap-4 text-green-900 text-sm mb-4"
                 >
-                    {property.rates.nightly && <p><FaMoneyBill className="lg:inline mr-1" /> Nightly</p>}
-                    {property.rates.weekly && <p><FaMoneyBill className="lg:inline mr-1" /> Weekly</p>}
-                    {property.rates.monthly && <p><FaMoneyBill className="lg:inline mr-1" /> monthly</p>}
+                    {property.rates?.nightly && <p><FaMoneyBill className="lg:inline mr-1" /> Nightly</p>}
+                    {property.rates?.weekly && <p><FaMoneyBill className="lg:inline mr-1" /> Weekly</p>}
+                    {property.rates?.monthly && <p><FaMoneyBill className="lg:inline mr-1" /> monthly</p>}
                 </div>
 
                 <div className="border border-gray-100 mb-5"></div>

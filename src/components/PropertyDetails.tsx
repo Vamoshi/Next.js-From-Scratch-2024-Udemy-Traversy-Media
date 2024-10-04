@@ -1,10 +1,10 @@
-import { IProperty } from '@/models/IProperty'
+import { PropertyDocument } from '@/models/IProperty'
 import React from 'react'
 import { FaBath, FaCheck, FaMapMarker, FaRulerCombined, FaTimes } from 'react-icons/fa'
 import { FaBed } from 'react-icons/fa6'
 
 type Props = {
-    property: IProperty
+    property: PropertyDocument
 }
 
 const PropertyDetails = ({ property }: Props) => {
