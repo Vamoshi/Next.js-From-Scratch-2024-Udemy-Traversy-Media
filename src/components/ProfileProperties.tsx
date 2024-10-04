@@ -4,6 +4,7 @@ import { PropertyDocument } from '@/models'
 import React, { useState } from 'react'
 import DefaultImage from './DefaultImage'
 import Link from 'next/link'
+import deleteProperty from '@/app/actions/deleteProperty'
 
 type Props = {
     properties: PropertyDocument[]
@@ -11,6 +12,16 @@ type Props = {
 
 const ProfileProperties = ({ properties: initialProperties }: Props) => {
     const [properties, setProperties] = useState(initialProperties)
+
+    const handleDeleteProperty = async (propertyId: string) => {
+        const confirmed = window.confirm("Are you sure you want to delete this property?")
+        if (!confirmed) {
+            return
+        }
+        await deleteProperty(propertyId)
+        const updatedProperties = properties.filter(property => property._id !== propertyId)
+        setProperties(updatedProperties)
+    }
 
     return properties.map((property, index) =>
         <div className="mb-10" key={index}>
@@ -35,6 +46,7 @@ const ProfileProperties = ({ properties: initialProperties }: Props) => {
                 <button
                     className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
                     type="button"
+                    onClick={() => handleDeleteProperty(property._id as string)}
                 >
                     Delete
                 </button>

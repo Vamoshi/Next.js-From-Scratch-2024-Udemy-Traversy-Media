@@ -21,13 +21,16 @@ const PropertiesPage = async () => {
     return (
         <section className='px-4 py6 mt-6'>
             <div className="container-xl lg:container m-auto px-4 py6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {
-                        properties.map((property, key) =>
-                            <PropertyCard key={key} property={property as PropertyDocument} />
-                        )
-                    }
-                </div>
+                {
+                    properties.length > 0 ?
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {properties.map((property, key) => <PropertyCard key={key} property={property as PropertyDocument} />)}
+                        </div>
+                        :
+                        <h1 className="text-center text-2xl font-bold mt-10">
+                            No Properties Found
+                        </h1>
+                }
             </div>
         </section>
     )
