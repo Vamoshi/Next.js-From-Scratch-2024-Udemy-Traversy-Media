@@ -6,14 +6,13 @@ import InfoBox from "./InfoBox"
 import InfoBoxes from "./InfoBoxes"
 import LoginButton from "./LoginButton"
 import Navbar from "./Navbar"
-import PropertyAddForm from "./PropertyAddForm"
+import PropertyForm from "./PropertyForm"
 import PropertyCard from "./PropertyCard"
 import PropertyDetails from "./PropertyDetails"
 import PropertyHeaderImage from "./PropertyHeaderImage"
 import SessionProviderWrapper from "./SessionProviderWrapper"
 import ProfileProperties from "./ProfileProperties"
 import PropertyImages from './PropertyImages'
-
 
 export {
     DefaultImage,
@@ -24,12 +23,12 @@ export {
     InfoBoxes,
     LoginButton,
     Navbar,
-    PropertyAddForm,
+    PropertyForm as PropertyAddForm,
     PropertyCard,
     PropertyDetails,
     PropertyHeaderImage,
     SessionProviderWrapper,
     ProfileProperties,
     PropertyImages,
-
+    PropertyForm as PropertyEditForm
 }
