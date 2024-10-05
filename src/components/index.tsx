@@ -13,6 +13,8 @@ import PropertyHeaderImage from "./PropertyHeaderImage"
 import SessionProviderWrapper from "./SessionProviderWrapper"
 import ProfileProperties from "./ProfileProperties"
 import PropertyImages from './PropertyImages'
+import PropertyMap from "./PropertyMap"
+import Spinner from "./Spinner"
 
 export {
     DefaultImage,
@@ -30,5 +32,7 @@ export {
     SessionProviderWrapper,
     ProfileProperties,
     PropertyImages,
-    PropertyForm as PropertyEditForm
+    PropertyForm as PropertyEditForm,
+    PropertyMap,
+    Spinner
 }

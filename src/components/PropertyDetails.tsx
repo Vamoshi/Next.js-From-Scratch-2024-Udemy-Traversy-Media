@@ -2,6 +2,7 @@ import { PropertyDocument } from '@/models/IProperty'
 import React from 'react'
 import { FaBath, FaCheck, FaMapMarker, FaRulerCombined, FaTimes } from 'react-icons/fa'
 import { FaBed } from 'react-icons/fa6'
+import PropertyMap from './PropertyMap'
 
 type Props = {
     property: PropertyDocument
@@ -113,7 +114,7 @@ const PropertyDetails = ({ property }: Props) => {
             </div>
             {/* <!-- Map --> */}
             <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-                <div id="map"></div>
+                <PropertyMap property={property} />
             </div>
         </main>
     )
