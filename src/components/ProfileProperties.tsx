@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import DefaultImage from './DefaultImage'
 import Link from 'next/link'
 import deleteProperty from '@/app/actions/deleteProperty'
+import { toast } from "react-toastify"
 
 type Props = {
     properties: PropertyDocument[]
@@ -18,9 +19,11 @@ const ProfileProperties = ({ properties: initialProperties }: Props) => {
         if (!confirmed) {
             return
         }
-        await deleteProperty(propertyId)
         const updatedProperties = properties.filter(property => property._id !== propertyId)
         setProperties(updatedProperties)
+        await deleteProperty(propertyId)
+
+        toast.success("Property Deleted Successfully")
     }
 
     return properties.map((property, index) =>

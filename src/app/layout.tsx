@@ -1,6 +1,8 @@
 import "@/assets/styles/globals.css"
 import { Footer, Navbar } from "@/components"
 import { SessionProviderWrapper } from "@/components"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import React, { ReactNode } from 'react'
 
@@ -20,8 +22,9 @@ const MainLayout = ({ children }: Props) => {
             <html lang="en">
                 <body>
                     <Navbar />
-                    <div>{children}</div>
+                    <main>{children}</main>
                     <Footer />
+                    <ToastContainer />
                 </body>
             </html>
         </SessionProviderWrapper>
