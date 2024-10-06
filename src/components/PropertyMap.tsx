@@ -66,7 +66,7 @@ const PropertyMap = ({ property }: Props) => {
     }, [property.location])
 
     if (isLoading) {
-        return <Spinner size={"10vw"} />
+        return <Spinner isOverride size={"10vw"} />
     }
 
     if (geocodeError) {

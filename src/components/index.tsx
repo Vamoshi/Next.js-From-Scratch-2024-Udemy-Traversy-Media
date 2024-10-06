@@ -15,6 +15,10 @@ import ProfileProperties from "./ProfileProperties"
 import PropertyImages from './PropertyImages'
 import PropertyMap from "./PropertyMap"
 import Spinner from "./Spinner"
+import BookmarkButton from "./BookmarkButton"
+import ShareButtons from "./ShareButtons"
+import PropertyContactForm from "./PropertyContactForm"
+
 
 export {
     DefaultImage,
@@ -34,5 +38,8 @@ export {
     PropertyImages,
     PropertyForm as PropertyEditForm,
     PropertyMap,
-    Spinner
+    Spinner,
+    BookmarkButton,
+    ShareButtons,
+    PropertyContactForm,
 }

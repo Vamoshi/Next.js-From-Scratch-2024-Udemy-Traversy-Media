@@ -9,12 +9,13 @@ const override = {
 }
 
 type Props = {
-    size: number | string
+    size?: number | string
+    isOverride?: boolean
 }
 
-const Spinner = ({ size }: Props) => {
+const Spinner = ({ size, isOverride }: Props) => {
     return (
-        <ClipLoader color="#3b82f6" cssOverride={override} size={size || "5vh"} aria-label='spinner' />
+        <ClipLoader color="#3b82f6" cssOverride={isOverride ? override : {}} size={size || "5vh"} aria-label='spinner' />
     )
 }
 

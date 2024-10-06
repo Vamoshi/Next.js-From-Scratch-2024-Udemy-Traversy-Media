@@ -1,4 +1,4 @@
-import { PropertyDetails, PropertyHeaderImage } from '@/components'
+import { BookmarkButton, PropertyContactForm, PropertyDetails, PropertyHeaderImage, ShareButtons } from '@/components'
 import { PropertyImages } from '@/components'
 import connectDB from '@/config/database'
 import { PropertyDocument } from '@/models'
@@ -49,6 +49,11 @@ const PropertyPage = async ({ params }: Props) => {
                 <div className="container m-auto py-10 px-6">
                     <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
                         <PropertyDetails property={property} />
+                        <aside className="space-y-4">
+                            <BookmarkButton property={property} />
+                            <ShareButtons property={property} />
+                            <PropertyContactForm property={property} />
+                        </aside>
                     </div>
                 </div>
             </section>
