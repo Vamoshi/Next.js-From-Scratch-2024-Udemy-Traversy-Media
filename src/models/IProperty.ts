@@ -1,7 +1,8 @@
-import { Document, ObjectId } from "mongoose";
+import { Document } from "mongoose";
 
 // Define the TypeScript interface for Property
 export interface IProperty {
+  _id?: string;
   owner: string; // Reference to the User model
   name: string;
   type: string;
@@ -32,6 +33,9 @@ export interface IProperty {
   updatedAt?: Date;
 }
 
-export interface PropertyDocument extends Omit<IProperty, "owner">, Document {
-  owner: ObjectId;
+export interface PropertyDocument
+  extends Omit<IProperty, "owner" | "_id">,
+    Document {
+  owner: string;
+  _id: string;
 }
