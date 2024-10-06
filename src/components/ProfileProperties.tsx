@@ -6,6 +6,7 @@ import DefaultImage from './DefaultImage'
 import Link from 'next/link'
 import deleteProperty from '@/app/actions/deleteProperty'
 import { toast } from "react-toastify"
+import { Types } from 'mongoose'
 
 type Props = {
     properties: PropertyDocument[]
@@ -14,7 +15,7 @@ type Props = {
 const ProfileProperties = ({ properties: initialProperties }: Props) => {
     const [properties, setProperties] = useState(initialProperties)
 
-    const handleDeleteProperty = async (propertyId: string) => {
+    const handleDeleteProperty = async (propertyId: Types.ObjectId) => {
         const confirmed = window.confirm("Are you sure you want to delete this property?")
         if (!confirmed) {
             return
@@ -49,7 +50,7 @@ const ProfileProperties = ({ properties: initialProperties }: Props) => {
                 <button
                     className="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600"
                     type="button"
-                    onClick={() => handleDeleteProperty(property._id as string)}
+                    onClick={() => handleDeleteProperty(property._id)}
                 >
                     Delete
                 </button>

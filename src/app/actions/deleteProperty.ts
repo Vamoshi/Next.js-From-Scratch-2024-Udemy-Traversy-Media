@@ -3,9 +3,10 @@
 import cloudinary from "@/config/cloudinary";
 import { Property } from "@/models";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { Types } from "mongoose";
 import { revalidatePath } from "next/cache";
 
-const deleteProperty = async (propertyId: string) => {
+const deleteProperty = async (propertyId: Types.ObjectId) => {
   const sessionUser = await getSessionUser();
 
   if (!sessionUser || !sessionUser.id) {

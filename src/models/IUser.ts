@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export interface IUser {
   _id: string;
@@ -10,9 +10,8 @@ export interface IUser {
   updatedAt?: Date;
 }
 
-export interface UserDocument
-  extends Omit<IUser, "_id" | "bookmarks">,
-    Document {
-  _id: string;
-  bookmarks: string[];
-}
+export type UserDocument = Omit<IUser, "_id" | "bookmarks"> &
+  Document & {
+    _id: Types.ObjectId;
+    bookmarks: Types.Array<Types.ObjectId>;
+  };

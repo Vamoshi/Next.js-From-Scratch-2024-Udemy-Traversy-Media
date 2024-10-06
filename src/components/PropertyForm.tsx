@@ -26,7 +26,7 @@ const PropertyForm = ({ property }: Props) => {
 
         try {
             if (property) {
-                await updateProperty(property._id as string, formData)
+                await updateProperty(property._id, formData)
             } else {
                 await addProperty(formData);
             }

@@ -1,4 +1,4 @@
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 // Define the TypeScript interface for Property
 export interface IProperty {
@@ -33,9 +33,8 @@ export interface IProperty {
   updatedAt?: Date;
 }
 
-export interface PropertyDocument
-  extends Omit<IProperty, "owner" | "_id">,
-    Document {
-  owner: string;
-  _id: string;
-}
+export type PropertyDocument = Omit<IProperty, "owner" | "_id"> &
+  Document & {
+    owner: Types.ObjectId;
+    _id: Types.ObjectId;
+  };

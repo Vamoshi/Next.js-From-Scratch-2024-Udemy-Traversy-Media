@@ -4,10 +4,11 @@ import connectDB from "@/config/database";
 import { IProperty, Property } from "@/models";
 import { getDataAsString, parseOptionalNumber } from "@/utils/formatFormValues";
 import { getSessionUser } from "@/utils/getSessionUser";
+import { Types } from "mongoose";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-async function updateProperty(propertyId: string, formData: FormData) {
+async function updateProperty(propertyId: Types.ObjectId, formData: FormData) {
   await connectDB();
 
   const sessionUser = await getSessionUser();
