@@ -2,11 +2,11 @@ import React from 'react'
 import DefaultImage from './DefaultImage'
 import Link from 'next/link';
 import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
-import { PropertyDocument } from '@/models';
+import { IProperty, PropertyDocument } from '@/models';
 import DefaultPropertyImage from "@/assets/images/default_property_image.jpg"
 
 type Props = {
-    property: PropertyDocument
+    property: PropertyDocument | IProperty
 }
 
 const PropertyCard = ({ property }: Props) => {
