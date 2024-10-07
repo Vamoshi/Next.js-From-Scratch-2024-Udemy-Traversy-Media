@@ -1,15 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { PropertyDocument } from '@/models'
 import React, { useEffect, useState } from 'react'
-import { setDefaults, fromAddress, GeocodeOptions } from "react-geocode"
 import Spinner from './Spinner'
-import Map, { MapboxMap, MapInstance, Marker } from "react-map-gl"
-import DefaultImage from './DefaultImage'
-import { Pin } from '@/assets/images'
-import 'mapbox-gl/dist/mapbox-gl.css'
+import dynamic from 'next/dynamic'
+
+const ClientOnlyMap = dynamic(() => import('./ClientOnlyMap'), {
+    ssr: false, // Disable server-side rendering for this component
+});
+
 type Props = {
     property: PropertyDocument
 }
@@ -17,48 +16,35 @@ type Props = {
 const PropertyMap = ({ property }: Props) => {
     const [lat, setLat] = useState(0)
     const [lng, setLng] = useState(0)
-    const [viewport, setViewPort] = useState({
-        latitude: 0,
-        longitude: 0,
-        zoom: 12,
-        width: "100%",
-        height: "500px"
-    })
-
     const [isLoading, setIsLoading] = useState(true)
     const [geocodeError, setGeocodeError] = useState(false)
-
-    setDefaults({
-        key: process.env.NEXT_PUBLIC_GOOGLE_GEOCODING_API_KEY,
-        language: 'en',
-        region: 'CA'
-    } as GeocodeOptions)
 
     useEffect(() => {
         const fetchCoords = async () => {
             try {
                 const { street, state, city, zipcode } = property.location
-                const res = await fromAddress(street || "" + city + state + zipcode)
+                const address = `${street && street + ","} ${city}, ${state}, ${zipcode}`
+                const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY
 
-                if (res.results.length === 0) {
+                const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${encodeURIComponent(address)}&limit=1&countrycode=CA&language=en`)
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch coordinates')
+                }
+
+                const data = await response.json()
+                if (data.results.length === 0) {
                     setGeocodeError(true)
                     return
                 }
-                const { lat, lng } = res.results[0].geometry.location
+
+                const { lat, lng } = data.results[0].geometry
                 setLat(lat)
                 setLng(lng)
-                setViewPort({
-                    ...viewport,
-                    latitude: lat,
-                    longitude: lng
-                })
             } catch (error) {
-                console.log('====================================');
-                console.log(error);
-                console.log('====================================');
+                console.error(error)
                 setGeocodeError(true)
-            }
-            finally {
+            } finally {
                 setIsLoading(false)
             }
         }
@@ -74,18 +60,8 @@ const PropertyMap = ({ property }: Props) => {
     }
 
     return (
-        !isLoading &&
-        <Map
-            mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
-            initialViewState={viewport}
-            style={{ width: '100%', height: 500 }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-        >
-            <Marker longitude={lng} latitude={lat} anchor='bottom'>
-                <DefaultImage src={Pin} width={40} height={40} />
-            </Marker>
-        </Map>
+        <ClientOnlyMap lat={lat} lng={lng} />
     )
 }
 
-export default PropertyMap
+export default PropertyMap;
