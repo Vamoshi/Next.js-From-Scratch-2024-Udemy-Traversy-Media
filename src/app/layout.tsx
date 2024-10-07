@@ -3,6 +3,7 @@ import { Footer, Navbar } from "@/components"
 import { SessionProviderWrapper } from "@/components"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import "photoswipe/dist/photoswipe.css"
 
 import React, { ReactNode } from 'react'
 import { GlobalContextProvider } from "@/context/GlobalContext"
