@@ -23,7 +23,7 @@ import SubmitMessageButton from "./SubmitMessageButton"
 import MessageCard from "./MessageCard"
 import UnreadMessageCount from "./UnreadMessageCount"
 import Pagination from "./Pagination"
-
+import FeaturedProperties from "./FeaturedProperties"
 
 export {
     DefaultImage,
@@ -52,4 +52,5 @@ export {
     MessageCard,
     UnreadMessageCount,
     Pagination,
+    FeaturedProperties,
 }

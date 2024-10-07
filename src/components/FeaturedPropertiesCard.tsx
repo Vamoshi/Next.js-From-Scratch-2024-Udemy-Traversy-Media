@@ -1,16 +1,14 @@
 import React from 'react'
 import DefaultImage from './DefaultImage'
-import Link from 'next/link';
-import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa';
-import { IProperty, PropertyDocument } from '@/models';
-import DefaultPropertyImage from "@/assets/images/default_property_image.jpg"
+import { PropertyDocument } from '@/models'
+import { FaBath, FaBed, FaMapMarker, FaMoneyBill, FaRulerCombined } from 'react-icons/fa'
+import Link from 'next/link'
 
 type Props = {
-    property: PropertyDocument | IProperty
+    property: PropertyDocument
 }
 
-const PropertyCard = ({ property }: Props) => {
-
+const FeaturedPropertiesCard = ({ property }: Props) => {
     const getRateDisplay = () => {
         const { rates } = property
 
@@ -29,26 +27,21 @@ const PropertyCard = ({ property }: Props) => {
     }
 
     return (
-        <div className="rounded-xl shadow-md relative">
-            <Link
-                href={`/properties/${property._id}`}
-            >
-                <DefaultImage
-                    src={property.images ? property.images[0] : DefaultPropertyImage}
-                    className="w-full h-auto rounded-t-xl"
-                />
-            </Link>
-            <div className="p-4">
-                <div className="text-left md:text-center lg:text-left mb-6">
-                    <div className="text-gray-600">{property.type}</div>
-                    <h3 className="text-xl font-bold">{property.name}</h3>
-                </div>
+        <div
+            className="bg-white rounded-xl shadow-md relative flex flex-col md:flex-row"
+        >
+            <DefaultImage
+                src={property.images[0]}
+                className="w-full h-auto rounded-t-xl md:rounded-tr-none md:rounded-l-xl md:w-2/5"
+            />
+            <div className="p-6">
+                <h3 className="text-xl font-bold">{property.name}</h3>
+                <div className="text-gray-600 mb-4">{property.type}</div>
                 <h3
-                    className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right"
+                    className="absolute top-[10px] left-[10px] bg-white px-4 py-2 rounded-lg text-blue-500 font-bold text-right md:text-center lg:text-right"
                 >
                     {getRateDisplay()}
                 </h3>
-
                 <div className="flex justify-center gap-4 text-gray-500 mb-4">
                     <p>
                         <FaBed className="lg:inline mr-1 md:hidden" /> {property.beds} {` `}
@@ -72,12 +65,14 @@ const PropertyCard = ({ property }: Props) => {
                     {property.rates?.monthly && <p><FaMoneyBill className="lg:inline mr-1" /> Monthly</p>}
                 </div>
 
-                <div className="border border-gray-100 mb-5"></div>
+                <div className="border border-gray-200 mb-5"></div>
 
-                <div className="flex flex-col lg:flex-row justify-between mb-4">
+                <div className="flex flex-col lg:flex-row justify-between">
                     <div className="flex align-middle gap-2 mb-4 lg:mb-0">
-                        <FaMapMarker className='text-orange-700 mt-1' />
-                        <span className="text-orange-700"> {property.location.city} {property.location.state} </span>
+                        <div className="flex align-middle gap-2 mb-4 lg:mb-0">
+                            <FaMapMarker className='text-orange-700 mt-1' />
+                            <span className="text-orange-700"> {property.location.city} {property.location.state} </span>
+                        </div>
                     </div>
                     <Link
                         href={`/properties/${property._id}`}
@@ -89,7 +84,6 @@ const PropertyCard = ({ property }: Props) => {
             </div>
         </div>
     )
-
 }
 
-export default PropertyCard
+export default FeaturedPropertiesCard
