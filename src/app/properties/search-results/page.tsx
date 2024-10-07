@@ -1,5 +1,4 @@
-import { PropertyCard } from '@/components'
-import PropertySearchForm from '@/components/PropertySearchForm'
+import { PropertyCard, PropertySearchForm } from '@/components'
 import connectDB from '@/config/database'
 import { IProperty, Property, PropertyDocument } from '@/models'
 import convertToSerializable from '@/utils/convertToSerializable'

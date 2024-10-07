@@ -18,7 +18,7 @@ import Spinner from "./Spinner"
 import BookmarkButton from "./BookmarkButton"
 import ShareButtons from "./ShareButtons"
 import PropertyContactForm from "./PropertyContactForm"
-
+import PropertySearchForm from "./PropertySearchForm"
 
 export {
     DefaultImage,
@@ -42,4 +42,5 @@ export {
     BookmarkButton,
     ShareButtons,
     PropertyContactForm,
+    PropertySearchForm,
 }

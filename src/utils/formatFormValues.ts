@@ -1,6 +1,6 @@
 const getDataAsString = (formData: FormData, key: string) => {
   const value = formData.get(key);
-  if (!value) throw new Error(`Missing required field: ${key}`);
+  if (!value) throw new Error(`Field ${key} not found`);
   return value as string;
 };
 
