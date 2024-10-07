@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
 import React, { ReactNode } from 'react'
+import { GlobalContextProvider } from "@/context/GlobalContext"
 
 type Props = {
     children: ReactNode
@@ -19,14 +20,16 @@ export const metadata = {
 const MainLayout = ({ children }: Props) => {
     return (
         <SessionProviderWrapper>
-            <html lang="en">
-                <body>
-                    <Navbar />
-                    <main>{children}</main>
-                    <Footer />
-                    <ToastContainer />
-                </body>
-            </html>
+            <GlobalContextProvider>
+                <html lang="en">
+                    <body>
+                        <Navbar />
+                        <main>{children}</main>
+                        <Footer />
+                        <ToastContainer />
+                    </body>
+                </html>
+            </GlobalContextProvider>
         </SessionProviderWrapper>
     )
 }

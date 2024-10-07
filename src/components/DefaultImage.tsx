@@ -12,7 +12,7 @@ const DefaultImage: React.FC<CustomImageProps> = ({
     sizes = "100vw",
     ...props
 }) => {
-    return <Image alt={alt} width={width} height={height} sizes={sizes} {...props} />;
+    return <Image alt={alt} width={width} height={width ? 0 : height} sizes={sizes} {...props} />;
 };
 
 export default DefaultImage;

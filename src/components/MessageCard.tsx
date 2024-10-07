@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import Spinner from './Spinner'
 import { toast } from 'react-toastify'
 import deleteMessage from '@/app/actions/deleteMessage'
+import { UseGlobalContext } from '@/context/GlobalContext'
 
 type Props = {
     message: IMessage
@@ -15,17 +16,20 @@ const MessageCard = ({ message }: Props) => {
     const [isRead, setisRead] = useState<boolean>(message.read)
     const [isDeleted, setIsDeleted] = useState(false)
 
+    const { setUnreadCount } = UseGlobalContext()
+
     const handleReadClick = async () => {
         const read = await markMessageAsRead(message._id)
 
         setisRead(read)
-        toast.success(`Marked as ${read ? "Read" : "New"}`)
+        setUnreadCount(prevCount => (read ? prevCount - 1 : prevCount + 1))
+        toast.success(`Marked as ${read ? "Read" : "Unread"}`)
     }
 
     const handleDeleteClick = async () => {
         await deleteMessage(message._id)
         setIsDeleted(true)
-
+        setUnreadCount(prevCount => (isRead ? prevCount - 1 : prevCount))
         toast.success("Message Deleted")
     }
 
@@ -42,7 +46,7 @@ const MessageCard = ({ message }: Props) => {
             {
                 !isRead &&
                 <div className=' absolute top-2 right-2 bg-yellow-500 text-white px-2 py-1 rounded-md'>
-                    New
+                    Unread
                 </div>
             }
             <h2 className=' text-xl mb-4'>
@@ -67,7 +71,7 @@ const MessageCard = ({ message }: Props) => {
             <button className=' mt-4 mr-3 bg-blue-500 text-white py-1 px-3 rounded-md'
                 onClick={handleReadClick}
             >
-                {isRead ? "Mark as Unread" : "Mark As New"}
+                {isRead ? "Mark as Unread" : "Mark As Read"}
             </button>
             <button className=' mt-4  bg-red-500 text-white py-1 px-3 rounded-md'
                 onClick={handleDeleteClick}

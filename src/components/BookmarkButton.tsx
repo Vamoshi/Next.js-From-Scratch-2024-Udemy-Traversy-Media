@@ -40,6 +40,11 @@ const BookmarkButton = ({ property }: Props) => {
             return
         }
 
+        if (userId === property.owner.toString()) {
+            toast.error("You cannot bookmark your own property")
+            return
+        }
+
         await bookmarkProperty(property._id).then((res) => {
             if (res.error) return toast.error(res.error as ToastContent<unknown>)
             setIsBookmarked(res.isBookmarked as boolean)
