@@ -24,7 +24,6 @@ import MessageCard from "./MessageCard"
 import UnreadMessageCount from "./UnreadMessageCount"
 import Pagination from "./Pagination"
 import FeaturedProperties from "./FeaturedProperties"
-import ClientOnlyMap from "./ClientOnlyMap"
 
 export {
     DefaultImage,
@@ -54,5 +53,4 @@ export {
     UnreadMessageCount,
     Pagination,
     FeaturedProperties,
-    ClientOnlyMap,
 }
