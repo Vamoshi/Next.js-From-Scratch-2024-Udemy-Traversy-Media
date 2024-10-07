@@ -17,7 +17,7 @@ const FeaturedProperties = async () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {
                         properties.map(property =>
-                            <FeaturedPropertiesCard property={property} />
+                            <FeaturedPropertiesCard key={property._id.toString()} property={property} />
                         )
                     }
                 </div>
