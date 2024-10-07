@@ -5,8 +5,8 @@ import { IProperty } from '@/models'
 import { useSession } from 'next-auth/react'
 import React, { useEffect } from 'react'
 import { useFormState } from 'react-dom'
-import { FaPaperPlane } from 'react-icons/fa'
 import { toast } from 'react-toastify'
+import SubmitMessageButton from './SubmitMessageButton'
 
 type Props = {
     property: IProperty
@@ -100,12 +100,7 @@ const PropertyContactForm = ({ property }: Props) => {
                     ></textarea>
                 </div>
                 <div>
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-                        type="submit"
-                    >
-                        <FaPaperPlane /> Send Message
-                    </button>
+                    <SubmitMessageButton />
                 </div>
             </form>
         </div>

@@ -19,6 +19,8 @@ import BookmarkButton from "./BookmarkButton"
 import ShareButtons from "./ShareButtons"
 import PropertyContactForm from "./PropertyContactForm"
 import PropertySearchForm from "./PropertySearchForm"
+import SubmitMessageButton from "./SubmitMessageButton"
+import MessageCard from "./MessageCard"
 
 export {
     DefaultImage,
@@ -43,4 +45,6 @@ export {
     ShareButtons,
     PropertyContactForm,
     PropertySearchForm,
+    SubmitMessageButton,
+    MessageCard,
 }

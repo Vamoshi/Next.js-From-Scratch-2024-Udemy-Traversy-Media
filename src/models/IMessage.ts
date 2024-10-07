@@ -2,16 +2,22 @@ import { Document, Types } from "mongoose";
 
 export type IMessage = {
   _id: string;
-  sender: string;
+  sender: {
+    _id: string;
+    username: string;
+  };
   recipient: string;
-  property: string;
+  property: {
+    _id: string;
+    name: string;
+  };
   name: string;
   email: string;
   phone?: string;
   body?: string;
   read: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: Date | string;
+  updatedAt?: Date | string;
 };
 
 export type MessageDocument = Omit<
