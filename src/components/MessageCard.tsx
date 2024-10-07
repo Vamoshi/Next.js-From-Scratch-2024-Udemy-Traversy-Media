@@ -1,9 +1,11 @@
 'use client'
+
 import markMessageAsRead from '@/app/actions/markMesssageAsRead'
 import { IMessage } from '@/models/IMessage'
 import React, { useState } from 'react'
 import Spinner from './Spinner'
 import { toast } from 'react-toastify'
+import deleteMessage from '@/app/actions/deleteMessage'
 
 type Props = {
     message: IMessage
@@ -11,21 +13,29 @@ type Props = {
 
 const MessageCard = ({ message }: Props) => {
     const [isRead, setisRead] = useState<boolean>(message.read)
+    const [isDeleted, setIsDeleted] = useState(false)
 
     const handleReadClick = async () => {
         const read = await markMessageAsRead(message._id)
 
         setisRead(read)
-        toast.success(`Marked as ${read ? "read" : "new"}`)
+        toast.success(`Marked as ${read ? "Read" : "New"}`)
+    }
+
+    const handleDeleteClick = async () => {
+        await deleteMessage(message._id)
+        setIsDeleted(true)
+
+        toast.success("Message Deleted")
     }
 
     if (!message) {
         return <Spinner />
     }
 
-    console.log('====================================');
-    console.log(isRead);
-    console.log('====================================');
+    if (isDeleted) {
+        return <p>Deleted</p>
+    }
 
     return (
         <div className='relative bg-white p-4 rounded-md shadow-md border border-gray-200'>
@@ -59,7 +69,9 @@ const MessageCard = ({ message }: Props) => {
             >
                 {isRead ? "Mark as Unread" : "Mark As New"}
             </button>
-            <button className=' mt-4  bg-red-500 text-white py-1 px-3 rounded-md'>
+            <button className=' mt-4  bg-red-500 text-white py-1 px-3 rounded-md'
+                onClick={handleDeleteClick}
+            >
                 Delete
             </button>
         </div>
