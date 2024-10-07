@@ -22,6 +22,8 @@ import PropertySearchForm from "./PropertySearchForm"
 import SubmitMessageButton from "./SubmitMessageButton"
 import MessageCard from "./MessageCard"
 import UnreadMessageCount from "./UnreadMessageCount"
+import Pagination from "./Pagination"
+
 
 export {
     DefaultImage,
@@ -49,4 +51,5 @@ export {
     SubmitMessageButton,
     MessageCard,
     UnreadMessageCount,
+    Pagination,
 }

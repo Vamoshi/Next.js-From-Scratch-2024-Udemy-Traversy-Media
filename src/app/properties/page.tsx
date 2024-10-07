@@ -1,22 +1,32 @@
 import React from 'react'
-import { PropertyCard } from '@/components'
+import { Pagination, PropertyCard } from '@/components'
 import Property from '@/models/Property'
 import connectDB from '@/config/database'
 import { PropertyDocument } from '@/models'
-// [...id] to make it a catch all /id/foo/bar will route to /id
 
+type Props = {
+    searchParams: {
+        page: string | number,
+        pageSize: string | number
+    }
+}
+
+// [...id] to make it a catch all /id/foo/bar will route to /id
 // const PropertyPage = ({ params {this is the params}, searchParams {any search?} }: Props) => {
-const PropertiesPage = async () => {
-    // References
-    // const router = useRouter()
-    // const params = useParams()
-    // const searchParams = useSearchParams()
-    // const pathName = usePathname()
+const PropertiesPage = async ({ searchParams: { page = 1, pageSize = 10 } }: Props) => {
+
 
     await connectDB()
+
+    // Calculate how many properties are skipped
+    const skip = (parseInt(page as string) - 1) * parseInt(pageSize as string)
+
+    const total = await Property.countDocuments({})
+    const showPagination = total > parseInt(pageSize as string)
+
     // lean returns query results as plains js objects instead of mongoose doc
-    // can only be used if read only
-    const properties = await Property.find({}).lean()
+    // can only be used if read -only
+    const properties = await Property.find({}).skip(skip).limit(parseInt(pageSize as string))
 
     return (
         <section className='px-4 py6 mt-6'>
@@ -30,6 +40,10 @@ const PropertiesPage = async () => {
                         <h1 className="text-center text-2xl font-bold mt-10">
                             No Properties Found
                         </h1>
+                }
+                {
+                    showPagination &&
+                    <Pagination page={parseInt(page as string)} pageSize={parseInt(pageSize as string)} totalItems={total} />
                 }
             </div>
         </section>
