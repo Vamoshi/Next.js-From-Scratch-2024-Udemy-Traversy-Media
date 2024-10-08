@@ -24,9 +24,9 @@ const PropertyMap = ({ property }: Props) => {
             try {
                 const { street, state, city, zipcode } = property.location
                 const address = `${street && street + ","} ${city}, ${state}, ${zipcode}`
-                const apiKey = process.env.NEXT_PUBLIC_OPENCAGE_API_KEY
 
-                const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?key=${apiKey}&q=${encodeURIComponent(address)}&limit=1&countrycode=CA&language=en`)
+                // // Call geocode route
+                const response = await fetch(`/api/geocode?address=${encodeURIComponent(address)}`);
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch coordinates')

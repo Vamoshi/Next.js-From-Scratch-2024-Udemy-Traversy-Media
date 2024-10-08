@@ -11,7 +11,6 @@ type Props = {
 }
 
 // This tries to access the document, so we need to make it into an ssr:false
-
 const ClientOnlyMap = ({ lat, lng }: Props) => {
     const icon = L.icon({
         iconUrl: '/images/pin.svg',
