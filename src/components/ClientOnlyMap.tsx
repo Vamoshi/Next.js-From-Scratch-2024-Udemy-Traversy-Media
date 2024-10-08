@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
@@ -8,10 +8,11 @@ import L from 'leaflet';
 type Props = {
     lat: number;
     lng: number;
+    popupDescription: string | ReactNode
 }
 
 // This tries to access the document, so we need to make it into an ssr:false
-const ClientOnlyMap = ({ lat, lng }: Props) => {
+const ClientOnlyMap = ({ lat, lng, popupDescription }: Props) => {
     const icon = L.icon({
         iconUrl: '/images/pin.svg',
         iconSize: [40, 40],
@@ -29,7 +30,9 @@ const ClientOnlyMap = ({ lat, lng }: Props) => {
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             <Marker position={[lat, lng]} icon={icon}>
-                <Popup>A pretty marker</Popup>
+                <Popup>
+                    {popupDescription}
+                </Popup>
             </Marker>
         </MapContainer>
     );

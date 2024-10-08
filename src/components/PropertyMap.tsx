@@ -18,15 +18,17 @@ const PropertyMap = ({ property }: Props) => {
     const [lng, setLng] = useState(0)
     const [isLoading, setIsLoading] = useState(true)
     const [geocodeError, setGeocodeError] = useState(false)
+    const [address, setAddress] = useState("")
 
     useEffect(() => {
         const fetchCoords = async () => {
             try {
                 const { street, state, city, zipcode } = property.location
-                const address = `${street && street + ","} ${city}, ${state}, ${zipcode}`
+                const queryAddress = `${street && street + ","} ${city}, ${state}, ${zipcode}`
+                setAddress(queryAddress)
 
                 // // Call geocode route
-                const response = await fetch(`/api/geocode?address=${encodeURIComponent(address)}`);
+                const response = await fetch(`/api/geocode?address=${encodeURIComponent(queryAddress)}`);
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch coordinates')
@@ -49,7 +51,7 @@ const PropertyMap = ({ property }: Props) => {
             }
         }
         fetchCoords()
-    }, [property.location])
+    }, [address, property.location])
 
     if (isLoading) {
         return <Spinner isOverride size={"10vw"} />
@@ -60,7 +62,12 @@ const PropertyMap = ({ property }: Props) => {
     }
 
     return (
-        <ClientOnlyMap lat={lat} lng={lng} />
+        <ClientOnlyMap lat={lat} lng={lng} popupDescription={
+            <div className=' text-center'>
+                <p>{property.name}</p>
+                <p>{address}</p>
+            </div>
+        } />
     )
 }
 
