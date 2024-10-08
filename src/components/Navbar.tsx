@@ -7,7 +7,6 @@ import { LogoWhite, ProfileDefault } from '@/assets/images'
 import { ClientSafeProvider, getProviders, signOut, useSession } from 'next-auth/react'
 import LoginButton from './LoginButton'
 import UnreadMessageCount from './UnreadMessageCount'
-import { revalidatePath } from 'next/cache'
 
 const Navbar = () => {
     const { data: session } = useSession()
