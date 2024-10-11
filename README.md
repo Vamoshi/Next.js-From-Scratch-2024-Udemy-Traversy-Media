@@ -72,6 +72,27 @@ npm -v
    yarn install
    ```
 
+## Setting Up Environment Variables
+
+To run this application locally, you need to create a `.env` file in the root of the project directory. This file should contain the following keys:
+
+```env
+MONGODB_URI=your_mongodb_uri
+NEXT_PUBLIC_DOMAIN=your_domain
+NEXT_PUBLIC_API_DOMAIN=your_api_domain
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+NEXTAUTH_URL=your_nextauth_url
+NEXTAUTH_URL_INTERNAL=your_nextauth_internal_url
+NEXTAUTH_SECRET=your_nextauth_secret
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+OPENCAGE_API_KEY=your_opencage_api_key
+```
+
+Make sure you have all the required keys set up in your `.env` file to ensure the application works correctly.
+
 ## Running the Application
 
 To run the development server:
