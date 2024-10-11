@@ -28,7 +28,7 @@ In this version:
 
 ## Live Demo
 
-Check out the live version of the application:
+Check out the live version of the application hosted on Vercel:
 
 [Next.js Application - 2024 Edition](https://next-js-from-scratch-2024-udemy-traversy-media.vercel.app/)
 
@@ -71,23 +71,6 @@ npm -v
    ```bash
    yarn install
    ```
-
-## Configuration
-
-The project uses environment variables for configuring services like Google OAuth, Cloudinary, OpenStreetMap, and OpenCage. Secrets and API keys should be stored in a `.env` file at the root of your project. The structure of the `.env` file should be:
-
-```env
-NEXT_PUBLIC_CLOUDINARY_URL=your_cloudinary_url
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=your_nextauth_secret
-DATABASE_URL=your_database_connection_string
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-OPENSTREETMAP_API_KEY=your_openstreetmap_api_key
-OPENCAGE_API_KEY=your_opencage_api_key
-```
-
-Ensure this file is added to `.gitignore` to prevent sensitive information from being committed to the repository.
 
 ## Running the Application
 
